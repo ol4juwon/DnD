@@ -139,7 +139,7 @@ const Navbar = ({searchTerm, setSearchTerm}) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-           Gallery
+           OlaJuwon's Gallery
           </Typography>
          <Search>
             <SearchIconWrapper>
