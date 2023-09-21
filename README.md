@@ -1,6 +1,6 @@
 ## Features
 
-- Simple auth that accepts only ONE password and email - `user@example.com` && `1Password`. Only signed In users can access the app content
+- Simple auth that accepts only ONE password and email - `user@example.com` && `1Password`. Only signed In users can drag and drop
 - A display gallery in Grid format with Drag n Drop feature. User can also search based on tag names
 - User friendly feedback
 - Fully responsive
