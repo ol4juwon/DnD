@@ -10,6 +10,7 @@ import SearchProvider from "../Providers/search";
 import Navbar from "../Components/Navbar";
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState([]);
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   const [filtered, setFiltered] = useState([...imageData]);
   const [cards, setCards] = useState(filtered);
@@ -31,7 +32,7 @@ const Home = () => {
         index={index}
         id={card.id}
         image={card.src}
-        moveCard={moveCard}
+        moveCard={user? moveCard: ""}
       />
     );
   }, []);

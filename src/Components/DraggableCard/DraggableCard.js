@@ -45,7 +45,7 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
             return
           }
           // Time to actually perform the action
-          moveCard(dragIndex, hoverIndex)
+         moveCard && moveCard(dragIndex, hoverIndex)
           // Note: we're mutating the monitor item here!
           // Generally it's better to avoid mutations,
           // but it's good here for the sake of performance
