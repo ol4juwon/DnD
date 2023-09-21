@@ -22,6 +22,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Formik, Form, useFormik } from "formik";
 import AuthProvider from "../../Providers/auth";
 import SearchProvider from "../../Providers/search";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, setUser } from "../../redux/reducers/authSlice";
 const users = [
   {
     email: "user@example.com",
@@ -80,14 +82,13 @@ const validationSchema = yup.object({
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
 });
-const Navbar = ({searchTerm, setSearchTerm}) => {
-  const [user, setUser] = useState(localStorage.getItem("user"));
-  const [anchorElUser, setAnchorElUser] = useState(null);
-  // const [searchTerm, setSearchTerm] = useState(null);
+const Navbar = ({ searchTerm, setSearchTerm }) => {
+  const user = useSelector((state) => state?.auth.user);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const {
     register,
-    formState: { errors, touchedFields },
+    formState: { errors },
     handleSubmit,
   } = useForm();
 
@@ -99,8 +100,7 @@ const Navbar = ({searchTerm, setSearchTerm}) => {
   };
   const handleLogout = () => {
     console.log("ee");
-    setUser(null);
-    localStorage.clear();
+    dispatch(logout());
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -112,8 +112,9 @@ const Navbar = ({searchTerm, setSearchTerm}) => {
     );
     console.log({ userExist });
     if (userExist.length > 0) {
-      localStorage.setItem("user", email);
-      setUser(email);
+      console.log("ss", {email});
+      // localStorage.setItem("user", email);
+      dispatch(setUser(email));
     } else {
       alert("login failed");
     }
@@ -126,22 +127,21 @@ const Navbar = ({searchTerm, setSearchTerm}) => {
     validationSchema: validationSchema,
     onSubmit: submit,
   });
-
+  console.log({ user });
   return (
     // <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
-      <Container maxWidth="xl"sx={{backgroundColor: "#Ff7100"}}>
+      <Container maxWidth="xl" sx={{ backgroundColor: "#Ff7100" }}>
         <Toolbar disableGutters>
-
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-           OlaJuwon's Gallery
+            OlaJuwon's Gallery
           </Typography>
-         <Search>
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -152,24 +152,25 @@ const Navbar = ({searchTerm, setSearchTerm}) => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-    
+
           <Box sx={{ flexGrow: 0, ml: 5 }}>
             <Tooltip title="Open settings">
-              {user && (
+              {user ? (
                 <IconButton onClick={handleClick} sx={{ p: 0 }}>
                   <Avatar alt={user} src="/static/images/avatar/2.jpg" />
                 </IconButton>
+              ): (
+                <IconButton
+                  onClick={handleClick}
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  <MenuIcon />
+                </IconButton>
               )}
-              {!user &&           <IconButton
-              onClick={handleClick}
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>}
             </Tooltip>
             <Popover
               id={id}

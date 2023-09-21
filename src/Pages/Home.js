@@ -8,9 +8,10 @@ import DraggableCard from "../Components/DraggableCard/DraggableCard";
 import imageData from "../utils/mock/images";
 import SearchProvider from "../Providers/search";
 import Navbar from "../Components/Navbar";
+import { useSelector } from "react-redux";
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState([]);
-  const [user, setUser] = useState(localStorage.getItem("user"));
+  const user = useSelector(state => state?.auth.user);
 
   const [filtered, setFiltered] = useState([...imageData]);
   const [cards, setCards] = useState(filtered);
@@ -32,10 +33,10 @@ const Home = () => {
         index={index}
         id={card.id}
         image={card.src}
-        moveCard={user? moveCard: ""}
+        moveCard={ moveCard}
       />
     );
-  }, []);
+  }, [moveCard]);
   const filter = useCallback(
     async (keyword)=> {
         console.info(keyword)
@@ -47,7 +48,7 @@ const Home = () => {
         console.log(fx);
         setCards(fx);
       },
-    [],
+    [cards],
   )
   useEffect(()=>{
     if(searchTerm.length > 0){
