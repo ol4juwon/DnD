@@ -80,7 +80,7 @@ const validationSchema = yup.object({
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
 });
-const Navbar = () => {
+const Navbar = ({searchTerm, setSearchTerm}) => {
   const [user, setUser] = useState(localStorage.getItem("user"));
   const [anchorElUser, setAnchorElUser] = useState(null);
   // const [searchTerm, setSearchTerm] = useState(null);
@@ -141,8 +141,7 @@ const Navbar = () => {
           >
             Ol4juwon's Gallery
           </Typography>
-          <SearchProvider>
-            {({searchTerm, setSearchTerm}) =>      <Search>
+         <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -152,8 +151,7 @@ const Navbar = () => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>}
-          </SearchProvider>
+          </Search>
     
           <Box sx={{ flexGrow: 0, ml: 5 }}>
             <Tooltip title="Open settings">

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import update from "immutability-helper";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -7,10 +7,12 @@ import Grid from "@mui/material/Grid";
 import DraggableCard from "../Components/DraggableCard/DraggableCard";
 import imageData from "../utils/mock/images";
 import SearchProvider from "../Providers/search";
+import Navbar from "../Components/Navbar";
 const Home = () => {
-  const [images, setImages] = useState([]);
-  const [cards, setCards] = useState([...imageData]);
+  const [searchTerm, setSearchTerm] = useState([]);
 
+  const [filtered, setFiltered] = useState([...imageData]);
+  const [cards, setCards] = useState(filtered);
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setCards((prevCards) =>
       update(prevCards, {
@@ -33,22 +35,43 @@ const Home = () => {
       />
     );
   }, []);
-  return (
-    <Box sx={{ mt: 5, mx: 5 }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
-        <SearchProvider>
-          {({images, filtered})=>{
-            console.log({images, filtered})
-           return filtered.map((item, index) => renderCard(item, index))
-          }}
-        </SearchProvider>
-        {/* {cards.map((card, i) => renderCard(card, i))} */}
-      </Grid>
+  const filter = useCallback(
+    async (keyword)=> {
+        console.info(keyword)
+    
+        const fx = cards.filter((image) => image.tags.some(function(tag) {
+            // Check if the tag contains the desired tag or partial match
+            return tag.includes(keyword);
+          }))
+        console.log(fx);
+        setCards(fx);
+      },
+    [],
+  )
+  useEffect(()=>{
+    if(searchTerm.length > 0){
+        filter(searchTerm);
+    }
+  },[filter, searchTerm])
+  return (<>
+  <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+     <Box sx={{ mt: 5, mx: 5 }}>
+
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {/* {images.map((item, index) => renderCard(item, index))} */}
+              {cards.map((card, i) => renderCard(card, i))}
+              {/* {filtered &&filtered.map((card, i) => renderCard(card, i))} */}
+            </Grid>
+
+  
     </Box>
+
+  </>
+
   );
 };
 
