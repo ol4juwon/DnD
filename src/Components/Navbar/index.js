@@ -137,11 +137,11 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, fontFamily:"Aguafina Script",fontSize:32, display: { xs: "none", sm: "block" } }}
+            sx={{ color:"white",flexGrow: 1, fontFamily:"Aguafina Script",fontSize:32, display: { xs: "none", sm: "block" } }}
           >
             OlaJuwon's Gallery
           </Typography>
-          <Search>
+          <Search sx={{backgroundColor:"#564256"}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

@@ -57,13 +57,14 @@ const Home = () => {
   },[filter, searchTerm])
   return (<>
   <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-  <Box>
+  <Box sx={{backgroundColor:"#96939B"}} >
     
   </Box>
-     <Box sx={{ mt: 15, mx: 5 }}>
+     <Box sx={{ mt: 15, mx: 5, backgroundColor:"#96939B" }}>
 
             <Grid
               container
+              sx={{backgroundColor:"#96939B"}}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
