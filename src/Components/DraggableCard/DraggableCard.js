@@ -67,7 +67,7 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
-    <Grid item xs={2} sm={4} md={3} ref={ref} data-handler-id={handlerId}>
+    <Grid item xs={4} sm={4} md={3} ref={ref} data-handler-id={handlerId}>
       <Card sx={[{ maxWidth: 345, borderRadius: 10 },
       {
         '&:hover': {

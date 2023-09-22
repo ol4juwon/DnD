@@ -130,7 +130,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   console.log({ user });
   return (
     // <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl" sx={{ backgroundColor: "#Ff7100" }}>
         <Toolbar disableGutters>
           <Typography

@@ -60,7 +60,7 @@ const Home = () => {
   <Box>
     
   </Box>
-     <Box sx={{ mt: 5, mx: 5 }}>
+     <Box sx={{ mt: 15, mx: 5 }}>
 
             <Grid
               container
