@@ -85,9 +85,12 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
             
             image={image}
             alt="green iguana"
-            sx={[
+            sx={[{
+              filter: 'grayscale(100%)',
+            },
               {
                 '&:hover': {
+                  filter:'none',
                   color: 'red',
                   backgroundColor: 'orange',
                   borderColor: "red",
