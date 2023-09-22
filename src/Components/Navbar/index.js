@@ -156,8 +156,8 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
           <Box sx={{ flexGrow: 0, ml: 5 }}>
             <Tooltip title="Open settings">
               {user ? (
-                <IconButton onClick={handleClick} sx={{ p: 0 }}>
-                  <Avatar alt={user} src="/static/images/avatar/2.jpg" />
+                <IconButton onClick={handleClick} sx={{ p: 0, }}>
+                  <Avatar sx={{ backgroundColor: "#7D4600"}} alt={user} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               ): (
                 <IconButton
@@ -166,7 +166,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
                   edge="start"
                   color="inherit"
                   aria-label="menu"
-                  sx={{ mr: 2 }}
+                  sx={{ mr: 2,  }}
                 >
                   <MenuIcon />
                 </IconButton>
