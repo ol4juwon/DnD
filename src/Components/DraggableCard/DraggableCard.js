@@ -67,20 +67,42 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
-    <Grid item xs={2} sm={4} md={4} ref={ref} data-handler-id={handlerId}>
-      <Card sx={{ maxWidth: 345 }}>
+    <Grid item xs={2} sm={4} md={3} ref={ref} data-handler-id={handlerId}>
+      <Card sx={[{ maxWidth: 345, borderRadius: 10 },
+      {
+        '&:hover': {
+          color: 'red',
+          backgroundColor: 'white',
+          borderColor: "red",
+          borderWidth: 1,
+        },
+      },
+      ]}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="250"
+            
             image={image}
             alt="green iguana"
+            sx={[
+              {
+                '&:hover': {
+                  color: 'red',
+                  backgroundColor: 'orange',
+                  borderColor: "red",
+                  borderWidth: 1,
+                },
+              },
+            ]}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {/* {text} */}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" sx={[{'&:hover': {
+              color: "orange",
+            }}]}>
               Lizards are a widespread group of squamate reptiles, with over
               6,000 species, ranging across all continents except Antarctica
             </Typography>

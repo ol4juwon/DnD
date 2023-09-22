@@ -57,6 +57,9 @@ const Home = () => {
   },[filter, searchTerm])
   return (<>
   <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+  <Box>
+    
+  </Box>
      <Box sx={{ mt: 5, mx: 5 }}>
 
             <Grid
