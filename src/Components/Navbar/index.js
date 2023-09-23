@@ -253,30 +253,6 @@ const Navbar = ({ searchTerm, setSearchTerm, isLoading, setIsLoading }) => {
           </Box>
         </Toolbar>
       </Container>
-      {/* <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-               
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-               Login
-              </Button>
-         
-          </Box>
-        </Toolbar> */}
     </AppBar>
     // </Box>
   );
