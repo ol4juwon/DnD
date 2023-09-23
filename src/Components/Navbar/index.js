@@ -122,6 +122,7 @@ const Navbar = ({ searchTerm, setSearchTerm, isLoading, setIsLoading }) => {
       }, 2500);
 
     } else {
+      setIsLoading(false);
       alert("login failed");
     }
   };
