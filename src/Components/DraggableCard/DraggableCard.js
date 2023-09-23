@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, Grid } from "@mui/material";
 import { useDrag, useDrop } from "react-dnd";
 import { useSelector } from "react-redux";
-const DraggableCard = ({ id, image, index, moveCard }) => {
+const DraggableCard = ({ id, image,tag, index, moveCard }) => {
   const ref = useRef(null);
   const user = useSelector(state => state.auth.user);
   const [{ handlerId }, drop] = useDrop({
@@ -39,19 +39,16 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
       // When dragging downwards, only move when the cursor is below 50%
       // When dragging upwards, only move when the cursor is above 50%
       // Dragging downwards
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-      // Dragging upwards
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
+      // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      //   return;
+      // }
+      // // Dragging upwards
+      // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      //   return;
+      // }
       // Time to actually perform the action
       user &&  moveCard(dragIndex, hoverIndex);
-      // Note: we're mutating the monitor item here!
-      // Generally it's better to avoid mutations,
-      // but it's good here for the sake of performance
-      // to avoid expensive index searches.
+
       item.index = hoverIndex;
     },
   });
@@ -99,16 +96,14 @@ const DraggableCard = ({ id, image, index, moveCard }) => {
               },
             ]}
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {/* {text} */}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={[{'&:hover': {
+          <CardContent paddingY={"4px"}>
+            {tag.map((item, index) => <Typography key={index} variant="span" textTransform={"capitalize"} color="text.secondary" sx={[
+              {backgroundColor: "#ff7100", color: "white", textTransform: "capitalize",paddingX: '15px', paddingY:"10px", margin: '2px', borderRadius: "10px"},
+              {'&:hover': {
               color: "orange",
             }}]}>
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
+             {item}
+            </Typography>)}
           </CardContent>
         </CardActionArea>
       </Card>

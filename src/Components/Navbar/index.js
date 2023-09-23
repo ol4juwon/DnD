@@ -82,7 +82,7 @@ const validationSchema = yup.object({
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
 });
-const Navbar = ({ searchTerm, setSearchTerm }) => {
+const Navbar = ({ searchTerm, setSearchTerm, isLoading, setIsLoading }) => {
   const user = useSelector((state) => state?.auth.user);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -106,15 +106,21 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   const id = open ? "simple-popover" : undefined;
   const submit = ({ email, password }) => {
     // e.preventDefault();
+    setIsLoading(true);
     console.log("submitting", { email, password });
     const userExist = users.filter(
       (item) => item.email === email && item.password === password
     );
     console.log({ userExist });
     if (userExist.length > 0) {
-      console.log("ss", {email});
-      // localStorage.setItem("user", email);
-      dispatch(setUser(email));
+
+      setTimeout(() => {
+        console.log("ss", {email});
+        // localStorage.setItem("user", email);
+        dispatch(setUser(email));
+        setIsLoading(false);
+      }, 2500);
+
     } else {
       alert("login failed");
     }
