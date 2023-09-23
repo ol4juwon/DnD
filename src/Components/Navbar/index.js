@@ -99,7 +99,7 @@ const Navbar = ({ searchTerm, setSearchTerm, isLoading, setIsLoading }) => {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    console.log("ee");
+    // console.log("ee");
     dispatch(logout());
   };
   const open = Boolean(anchorEl);
@@ -115,7 +115,7 @@ const Navbar = ({ searchTerm, setSearchTerm, isLoading, setIsLoading }) => {
     if (userExist.length > 0) {
 
       setTimeout(() => {
-        console.log("ss", {email});
+        // console.log("ss", {email});
         // localStorage.setItem("user", email);
         dispatch(setUser(email));
         setIsLoading(false);
